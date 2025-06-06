@@ -9,7 +9,6 @@ from collections import defaultdict
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
 from ytmusicapi import YTMusic
-from tqdm import tqdm
 
 # --- Configuration Paths ---
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
