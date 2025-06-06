@@ -342,7 +342,7 @@ def find_opposite_tracks(sp, top_genres, existing_tracks=None):
     random.shuffle(candidates) # Shuffle final candidates for variety
     return candidates[:25] # Return top 25 candidates for the playlist
 
-def create_anti_playlist_main_flow(sp):
+def create_anti_playlist(sp):
     """Main function to create the anti-playlist on Spotify."""
     print("🚀 Starting Anti-Playlist Creation for Spotify")
     
@@ -418,7 +418,7 @@ def main():
     
     spotify_client = get_spotify_client()
     if spotify_client:
-        create_anti_playlist_main_flow(spotify_client)
+        create_anti_playlist(spotify_client)
         print("\n✅ Anti-playlist creation process completed!")
     else:
         print("\n❌ Failed to get authenticated Spotify client. Exiting.")
