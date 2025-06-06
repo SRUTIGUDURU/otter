@@ -253,13 +253,13 @@ def get_authenticated_service():
         print("   ⚠ No existing token found.")
     
     if not credentials or not credentials.valid:
-    if credentials and credentials.expired and credentials.refresh_token:
-        print("   🔄 Refreshing expired credentials...")
-        try:
-            credentials.refresh(Request())
-        except Exception as e:
-            print(f"   ❌ Failed to refresh token: {e}. Re-authenticating.")
-            credentials = None
+        if credentials and credentials.expired and credentials.refresh_token:
+            print("   🔄 Refreshing expired credentials...")
+            try:
+                credentials.refresh(Request())
+            except Exception as e:
+                print(f"   ❌ Failed to refresh token: {e}. Re-authenticating.")
+                credentials = None
 
     if not credentials:
         print("   🌐 Starting OAuth flow - browser will open for authentication...")
