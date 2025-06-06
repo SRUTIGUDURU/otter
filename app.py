@@ -6,6 +6,20 @@ import datetime
 from pathlib import Path
 import sqlite3
 from urllib.parse import urlparse, parse_qs
+from dotenv import load_dotenv
+def get_secret(key):
+    """Retrieve secret from either Streamlit secrets or environment variables"""
+    load_dotenv()  # Load .env file if it exists
+    
+    # Priority 1: Streamlit Sharing secrets
+    if hasattr(st, 'secrets') and key in st.secrets:
+        return st.secrets[key]
+    
+    # Priority 2: Environment variables (for local/GitHub Actions)
+    if os.environ.get(key):
+        return os.environ.get(key)
+    
+    raise ValueError(f"Missing required secret: {key}")
 
 # Import services - keeping all original function names exactly as they were
 from services.spotify_service import (
@@ -47,17 +61,17 @@ if 'done' not in st.session_state:
     st.session_state.done = False
 
 # Environment variables (loaded by Streamlit automatically from .env file)
-SPOTIFY_CLIENT_ID = os.environ.get("SPOTIFY_CLIENT_ID")
-SPOTIFY_CLIENT_SECRET = os.environ.get("SPOTIFY_CLIENT_SECRET")
+SPOTIFY_CLIENT_ID = get_secret("SPOTIFY_CLIENT_ID")
+SPOTIFY_CLIENT_SECRET = get_secret("SPOTIFY_CLIENT_SECRET")
 SPOTIFY_SCOPE = "playlist-modify-public user-library-read user-top-read"
 
-YOUTUBE_CLIENT_ID = os.environ.get("YOUTUBE_CLIENT_ID")
-YOUTUBE_CLIENT_SECRET = os.environ.get("YOUTUBE_CLIENT_SECRET")
+YOUTUBE_CLIENT_ID = get_secret("YOUTUBE_CLIENT_ID")
+YOUTUBE_CLIENT_SECRET = get_secret("YOUTUBE_CLIENT_SECRET")
 YOUTUBE_SCOPES = ['https://www.googleapis.com/auth/youtube.force-ssl', 
                  'https://www.googleapis.com/auth/youtubepartner']
 
 # Set redirect URIs based on environment
-BASE_URL = os.environ.get("BASE_URL", "https://otter-anti.streamlit.app")
+BASE_URL = get_secret("BASE_URL", "https://otter-anti.streamlit.app")
 SPOTIFY_REDIRECT_URI = f"{BASE_URL}/callback/spotify"
 YOUTUBE_REDIRECT_URI = f"{BASE_URL}/callback/youtube"
 
