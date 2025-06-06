@@ -13,8 +13,8 @@ from services.spotify_service import (
     analyze_user_genres, find_opposite_tracks, create_anti_playlist
 )
 from services.youtube_service import (
-    get_youtube_auth_url, get_youtube_credentials_from_callback, get_youtube_client_from_creds_data,
-    analyze_recent_genres, search_authentic_music, create_anti_playlist as youtube_create_playlist
+    get_authenticated_service,
+    analyze_recent_genres, search_authentic_music, create_anti_playlist_main_flow
 )
 
 # Database helper
