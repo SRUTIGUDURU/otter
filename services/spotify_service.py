@@ -35,7 +35,7 @@ def get_spotify_client_from_token(token_info, client_id, client_secret, redirect
         redirect_uri=redirect_uri,
         scope=scope,
         cache_handler=spotipy.cache_handler.MemoryCacheHandler(token_info)
-    )
+    ))
 
 # --- Spotify Configuration ---
 # IMPORTANT: Replace with your actual Spotify Client ID and Secret
