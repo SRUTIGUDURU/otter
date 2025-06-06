@@ -54,17 +54,12 @@ if 'done' not in st.session_state:
     st.session_state.done = False
 
 # Environment variables (loaded by Streamlit automatically from .env file)
-SPOTIFY_CLIENT_ID = get_secret("SPOTIFY_CLIENT_ID")
-SPOTIFY_CLIENT_SECRET = get_secret("SPOTIFY_CLIENT_SECRET")
 SPOTIFY_SCOPE = "playlist-modify-public user-library-read user-top-read"
-
-YOUTUBE_CLIENT_ID = get_secret("YOUTUBE_CLIENT_ID")
-YOUTUBE_CLIENT_SECRET = get_secret("YOUTUBE_CLIENT_SECRET")
 YOUTUBE_SCOPES = ['https://www.googleapis.com/auth/youtube.force-ssl', 
                  'https://www.googleapis.com/auth/youtubepartner']
 
 # Set redirect URIs based on environment
-BASE_URL = get_secret("BASE_URL", "https://otter-anti.streamlit.app")
+BASE_URL =  "https://otter-anti.streamlit.app"
 SPOTIFY_REDIRECT_URI = f"{BASE_URL}/callback/spotify"
 YOUTUBE_REDIRECT_URI = f"{BASE_URL}/callback/youtube"
 
