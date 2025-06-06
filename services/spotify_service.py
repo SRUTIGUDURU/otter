@@ -4,7 +4,6 @@ import datetime
 from collections import defaultdict
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
-from tqdm import tqdm
 import time
 import random
 
