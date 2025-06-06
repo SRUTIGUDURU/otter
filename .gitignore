@@ -2,6 +2,11 @@
 .env
 /env/
 *.env
+# .gitignore
+.env            # Ignores root .env
+*.env           # Ignores all .env files
+.env*           # Ignores .env, .env.local, etc.
+env/            # Ignores env/ folder
 .env.local
 .env.development
 .env.production
