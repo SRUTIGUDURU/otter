@@ -104,7 +104,7 @@ def process_spotify_callback():
     """Process the Spotify OAuth callback"""
     try:
         # Get query parameters from URL
-        query_params = st.experimental_get_query_params()
+        query_params = st.query_params()
         code = query_params.get("code", [""])[0]
         
         if code:
@@ -118,7 +118,7 @@ def process_spotify_callback():
             
             # Clear URL parameters after processing
             time.sleep(1)  # Brief pause to let the success message display
-            st.experimental_set_query_params()
+            st.query_params()
             st.experimental_rerun()
     except Exception as e:
         st.error(f"Error processing Spotify callback: {str(e)}")
@@ -128,7 +128,7 @@ def process_youtube_callback():
     """Process the YouTube OAuth callback"""
     try:
         # Get query parameters from URL
-        query_params = st.experimental_get_query_params()
+        query_params = st.query_params()
         code = query_params.get("code", [""])[0]
         state = query_params.get("state", [""])[0]
         
@@ -139,7 +139,7 @@ def process_youtube_callback():
                 return
                 
             # Construct full callback URL
-            callback_url = f"{BASE_URL}/callback/youtube?{urlparse(st.experimental_get_query_params()).query}"
+            callback_url = f"{BASE_URL}/callback/youtube?{urlparse(st.query_params()).query}"
             
             # Exchange code for credentials
             credentials = get_youtube_credentials_from_callback(
@@ -164,7 +164,7 @@ def process_youtube_callback():
             
             # Clear URL parameters after processing
             time.sleep(1)  # Brief pause to let the success message display
-            st.experimental_set_query_params()
+            st.query_params()
             st.experimental_rerun()
     except Exception as e:
         st.error(f"Error processing YouTube callback: {str(e)}")
@@ -332,8 +332,8 @@ def main():
     st.markdown(f'<p class="otter-tagline">{TAGLINE}</p>', unsafe_allow_html=True)
     
     # Process callbacks if present in URL
-    query_params = st.experimental_get_query_params()
-    callback_path = st.experimental_get_query_params().get("path", [""])[0]
+    query_params = st.query_params()
+    callback_path = st.query_params().get("path", [""])[0]
     
     if "code" in query_params and "callback/spotify" in callback_path and not st.session_state.callback_processed:
         process_spotify_callback()
