@@ -9,22 +9,6 @@ from collections import defaultdict
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
 from ytmusicapi import YTMusic
-def get_youtube_auth_url():
-    """
-    Creates an OAuth2.0 Flow and returns the authorization URL
-    that your front-end (Streamlit, Flask, etc.) can redirect the user to.
-    """
-    flow = Flow.from_client_secrets_file(
-        CLIENT_SECRETS_FILE,
-        scopes=SCOPES,
-        redirect_uri=REDIRECT_URI
-    )
-    auth_url, _ = flow.authorization_url(
-        access_type='offline',
-        include_granted_scopes='true',
-        prompt='consent'
-    )
-    return auth_url
 
 # --- Configuration Paths ---
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
