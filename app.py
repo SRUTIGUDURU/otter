@@ -10,7 +10,7 @@ from urllib.parse import urlparse, parse_qs
 # Import services
 from services.spotify_service import (
     get_spotify_auth_url, get_spotify_token, get_spotify_client_from_token,
-    analyze_user_genres, find_opposite_tracks, create_anti_playlist as spotify_create_playlist
+    analyze_user_genres, find_opposite_tracks, create_anti_playlist
 )
 from services.youtube_service import (
     get_youtube_auth_url, get_youtube_credentials_from_callback, get_youtube_client_from_creds_data,
@@ -220,7 +220,7 @@ def create_spotify_anti_playlist():
             
             # Progress 3: Create playlist
             progress_container.info(f"Found {len(track_ids)} unique contrasting tracks. Creating playlist...")
-            result_message = spotify_create_playlist(spotify_client, track_ids)
+            result_message = create_anti_playlist(spotify_client)
             
             # Save to history
             save_history(spotify_user_id, 'spotify', track_ids)
