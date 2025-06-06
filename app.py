@@ -104,7 +104,7 @@ def authenticate_youtube():
 def process_spotify_callback():
     """Process the Spotify OAuth callback"""
     try:
-        query_params = st.query_params()
+        query_params = st.query_params
         code = query_params.get("code", [""])[0]
         
         if code:
@@ -116,7 +116,7 @@ def process_spotify_callback():
             st.success("Successfully authenticated with Spotify!")
             
             time.sleep(1)
-            st.query_params()
+            st.query_params
             st.experimental_rerun()
     except Exception as e:
         st.error(f"Error processing Spotify callback: {str(e)}")
@@ -125,7 +125,7 @@ def process_spotify_callback():
 def process_youtube_callback():
     """Process the YouTube OAuth callback"""
     try:
-        query_params = st.query_params()
+        query_params = st.query_params
         code = query_params.get("code", [""])[0]
         state = query_params.get("state", [""])[0]
         
@@ -150,7 +150,7 @@ def process_youtube_callback():
             st.success("Successfully authenticated with YouTube!")
             
             time.sleep(1)
-            st.query_params()
+            st.query_params
             st.experimental_rerun()
     except Exception as e:
         st.error(f"Error processing YouTube callback: {str(e)}")
@@ -275,8 +275,8 @@ def main():
     st.markdown(f'<h1 class="otter-title">{APP_TITLE}</h1>', unsafe_allow_html=True)
     st.markdown(f'<p class="otter-tagline">{TAGLINE}</p>', unsafe_allow_html=True)
     
-    query_params = st.query_params()
-    callback_path = st.query_params().get("path", [""])[0]
+    query_params = st.query_params  # This is correct
+    callback_path = st.query_params.get("path", [""])[0]
     
     if "code" in query_params and "callback/spotify" in callback_path and not st.session_state.callback_processed:
         process_spotify_callback()
