@@ -6,20 +6,11 @@ import datetime
 from pathlib import Path
 import sqlite3
 from urllib.parse import urlparse, parse_qs
-from dotenv import load_dotenv
-def get_secret(key):
-    """Retrieve secret from either Streamlit secrets or environment variables"""
-    load_dotenv()  # Load .env file if it exists
-    
-    # Priority 1: Streamlit Sharing secrets
-    if hasattr(st, 'secrets') and key in st.secrets:
-        return st.secrets[key]
-    
-    # Priority 2: Environment variables (for local/GitHub Actions)
-    if os.environ.get(key):
-        return os.environ.get(key)
-    
-    raise ValueError(f"Missing required secret: {key}")
+headers={
+    "authorisation": st.secrets["SPOTIFY_REDIRECT_URI", "YOUTUBE_CLIENT_ID", "YOUTUBE_CLIENT_SECRET", "YOUTUBE_REDIRECT_URI", "SPOTIFY_CLIENT_ID", "SPOTIFY_CLIENT_SECRET"
+],
+    "content-type": "application/json"
+}
 
 # Import services - keeping all original function names exactly as they were
 from services.spotify_service import (
