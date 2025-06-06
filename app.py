@@ -60,7 +60,7 @@ YOUTUBE_SCOPES = ['https://www.googleapis.com/auth/youtube.force-ssl',
 
 # Set redirect URIs based on environment
 BASE_URL =  "https://otter-anti.streamlit.app"
-SPOTIFY_REDIRECT_URI = f"{BASE_URL}/callback/spotify"
+SPOTIFY_REDIRECT_URI = f"{BASE_URL}/callback"
 YOUTUBE_REDIRECT_URI = f"{BASE_URL}/callback/youtube"
 
 # Helper functions
