@@ -13,8 +13,7 @@ from services.spotify_service import (
     analyze_user_genres, find_opposite_tracks, create_anti_playlist
 )
 from services.youtube_service import (
-    get_authenticated_service,
-    analyze_recent_genres, search_authentic_music, create_anti_playlist_main_flow
+    get_authenticated_service,analyze_recent_genres, search_authentic_music, create_anti_playlist_main_flow
 )
 
 # Database helper
@@ -86,7 +85,7 @@ def authenticate_spotify():
 def authenticate_youtube():
     """Start YouTube authentication flow"""
     try:
-        auth_info = get_youtube_auth_url(YOUTUBE_CLIENT_ID, YOUTUBE_CLIENT_SECRET, YOUTUBE_REDIRECT_URI, YOUTUBE_SCOPES)
+        auth_info = get_authenticated_service()
         st.session_state.youtube_flow_state = auth_info['state']  # Store state for CSRF
         st.session_state.working = True
         st.markdown(f"""
