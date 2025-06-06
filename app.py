@@ -6,11 +6,13 @@ import datetime
 from pathlib import Path
 import sqlite3
 from urllib.parse import urlparse, parse_qs
-headers={
-    "authorisation": st.secrets["SPOTIFY_REDIRECT_URI", "YOUTUBE_CLIENT_ID", "YOUTUBE_CLIENT_SECRET", "YOUTUBE_REDIRECT_URI", "SPOTIFY_CLIENT_ID", "SPOTIFY_CLIENT_SECRET"
-],
-    "content-type": "application/json"
-}
+SPOTIFY_REDIRECT_URI = st.secrets["SPOTIFY_REDIRECT_URI"]
+YOUTUBE_CLIENT_ID=st.secrets["YOUTUBE_CLIENT_ID"]
+YOUTUBE_CLIENT_SECRET=st.secrets["YOUTUBE_CLIENT_SECRET"]
+YOUTUBE_REDIRECT_URI=st.secrets["YOUTUBE_REDIRECT_URI"]
+SPOTIFY_CLIENT_ID =st.secrets["SPOTIFY_CLIENT_ID"]
+SPOTIFY_CLIENT_SECRET =st.secrets["SPOTIFY_CLIENT_SECRET"]
+
 
 # Import services - keeping all original function names exactly as they were
 from services.spotify_service import (
