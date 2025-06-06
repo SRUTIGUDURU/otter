@@ -57,7 +57,7 @@ YOUTUBE_SCOPES = ['https://www.googleapis.com/auth/youtube.force-ssl', 'https://
 
 # Set redirect URIs based on environment
 # For local development
-BASE_URL = os.environ.get("BASE_URL", "http://localhost:8501")
+BASE_URL = os.environ.get("BASE_URL", "https://otter-anti.streamlit.app")
 SPOTIFY_REDIRECT_URI = f"{BASE_URL}/callback/spotify"
 YOUTUBE_REDIRECT_URI = f"{BASE_URL}/callback/youtube"
 
